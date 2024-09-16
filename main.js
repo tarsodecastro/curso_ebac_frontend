@@ -1,57 +1,34 @@
-const form = document.getElementById('form-exercicio');
-const campoA = document.getElementById('campo-a');
-const campoB = document.getElementById('campo-b');
-let formEValido = false;
+$(document).ready(function () {
 
-function validaForm(a, b) {
+    const postitColors = ['#f7d6b5', '#f8e1c1', '#f5cbb0', '#fbe2c9', '#f4cfb7', '#fae1c0'];
+    let colorIndex = 0;
 
-    a = parseInt(a);
-    b = parseInt(b);
+    $('header button').click(function () {
+        $('form').slideDown();
+    })
 
-    if(b > a){
-        return true;
-    }else{
-        return false;
-    }
-}
+    $('#botao-cancelar').click(function () {
+        $('form').slideUp();
+    })
 
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        const enderecoDaNovaImagem = $('#nova-tarefa').val();
+        const novoItem = $(`<li style="display: none;" ></li>`);
+        $(`<div class="overlay-texto" style="background-color: ${postitColors[colorIndex]};">
+             <a href="#">${enderecoDaNovaImagem}</a>
+            </div>`).appendTo(novoItem);
+        $(novoItem).appendTo('ul');
+        $(novoItem).fadeIn('fast');
+        $('#nova-tarefa').val('');
 
-    const mensagemSucesso = `O valor de B (<b>${campoB.value}</b>) é maior que o valor de A (<b>${campoA.value}</b>)`;
+        colorIndex = (colorIndex + 1) % postitColors.length;
+    })
 
-    formEValido = validaForm(campoA.value, campoB.value);
+    $('ul').on('click', '.overlay-texto a', function (e) {
+        e.preventDefault(); // Evita o comportamento padrão do link
+        $(this).toggleClass('overlay-texto-click');
+    });
 
-    if (formEValido) {
-        const containerMensagemSucesso = document.querySelector('.success-message');
-        containerMensagemSucesso.innerHTML = mensagemSucesso;
-        containerMensagemSucesso.style.display = 'block';
 
-        campoA.value = '';
-        campoB.value = '';
-    } else {
-        campoB.classList.add('error');
-        document.querySelector('.error-message').style.display = 'block';
-    }
-
-});
-
-campoB.addEventListener('keyup', function (e) {
-
-    document.querySelector('.success-message').style.display = 'none';
-
-    if(this.value === ''){
-        campoB.classList.remove('error');
-        document.querySelector('.error-message').style.display = 'none';
-    }
-
-    formEValido = validaForm(campoA.value, campoB.value);
-
-    if (!formEValido){
-        campoB.classList.add('error');
-        document.querySelector('.error-message').style.display = 'block';
-    }else{
-        campoB.classList.remove('error');
-        document.querySelector('.error-message').style.display = 'none';
-    }
-});
+})
