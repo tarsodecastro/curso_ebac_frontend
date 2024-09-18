@@ -5,92 +5,60 @@
     font-family: 'Roboto', sans-serif;
 }
 
-header{
-    background-color: #0056cc;
-    padding: 16px 0;
+body {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+header {
+    background-color: #007bff;
     color: #fff;
-    display: flex;
-    border-bottom: 16px solid #3b1e82;
-    justify-content: center;
-    text-transform: uppercase;
-    font-style: italic;
-}
-
-header button{
-    margin-left: 16px;
-
-}
-
-form{
-    background-color: #f0f4f7;
-    padding: 24px 0;
     text-align: center;
-    display: none;
+    padding: 20px 0;
+    margin: 0 auto;
 }
 
-form h2{
+h2 {
+    text-align: center;
     margin-bottom: 16px;
 }
 
-input,
-button{
-    padding: 8px;
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-input{
-    width: 300px;
+.form-campo {
+    margin-bottom: 20px;
 }
 
-button{
-    background-color: #218838;
+.form-campo label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-campo input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.container button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
     border: none;
     cursor: pointer;
     font-weight: bold;
-    text-transform: uppercase;
-    color: #fff;
+    display: inline-block;
 }
 
-#botao-cancelar{
-    background-color: #dc3545;
-}
-
-ul {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-ul li{
-    max-width: 25%;
-    list-style: none;
-    position: relative;
-    max-height: 280px;
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-
-.overlay-texto{
-    padding: 16px;
-    margin: 10px;
-    background-color: #f7d6b5;
-    bottom: 0px;
-    left: 0;
-    width: 100%;
-    transition: all ease .3s;
-    cursor: pointer;
-   
-}
-
-/* Remove o sublinhado em todos os estados */
-.overlay-texto a:link,
-.overlay-texto a:visited,
-.overlay-texto a:hover,
-.overlay-texto a:active {
-    text-decoration: none;
-    color: #333333;
-}
-
-/* Estilo quando a classe 'overlay-texto-click' é adicionada */
-.overlay-texto a.overlay-texto-click {
-    text-decoration: line-through; /* Adiciona linha atravessada */
-    color: gray; /* Cor cinza para indicar conclusão */
+.error {
+    color: red
 }
